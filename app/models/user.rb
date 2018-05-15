@@ -2,16 +2,18 @@ require 'sinatra/base'
 class User < ActiveRecord::Base
   has_secure_password
   has_many :products
+  has_many :reviews, through: :product_reviews
+
 
   def slug
-    username = self.username.strip.downcase
-      username.gsub! /['`]/,""
-      username.gsub! /\s*@\s*/, " at "
-      username.gsub! /\s*&\s*/, " and "
-      username.gsub! /\s*[^A-Za-z0-9\.\-]\s*/, '-'
-      username.gsub! /_+/,"-"
-      username.gsub! /\A[_\.]+|[_\.]+\z/,""
-      username
+    slugged_name = self.name.strip.downcase
+      slugged_name.gsub! /['`]/,""
+      slugged_name.gsub! /\s*@\s*/, " at "
+      slugged_name.gsub! /\s*&\s*/, " and "
+      slugged_name.gsub! /\s*[^A-Za-z0-9\.\-]\s*/, '-'
+      slugged_name.gsub! /_+/,"-"
+      slugged_name.gsub! /\A[_\.]+|[_\.]+\z/,""
+      slugged_name
   end
 
   def self.find_by_slug(slug)
