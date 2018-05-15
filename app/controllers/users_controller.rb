@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   get '/signup' do
+    session.clear
     if logged_in?
       redirect "/products"
     else
@@ -8,20 +9,13 @@ class UsersController < ApplicationController
     end
   end
 
-  get '/users/index' do
-    if logged_in?
-      @products = Product.all
-      erb :'/users/index'
-    else
-      redirect '/login'
-    end
-  end
-
   post '/signup' do
-    if !params[:username].empty? && !params[:email].empty? && !params[:password].empty?
-      @user = User.create(params)
+    if !params[:username].empty? && !params[:password].empty? &&
+      @user = User.new(:name => params[:name], :username => params[:username], :password => params[:password])
+      @user.save
       session[:user_id] = @user.id
-      redirect '/users/index'
+      #binding.pry
+      redirect "/users/#{@user.slug}"
     else
       redirect "/signup"
     end
@@ -29,7 +23,7 @@ class UsersController < ApplicationController
 
   get '/login' do
     if logged_in?
-      redirect "/users/index"
+      redirect "/users/#{@user.slug}"
     else
       erb :"users/login"
     end
@@ -39,7 +33,7 @@ class UsersController < ApplicationController
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect "/products"
+      redirect "/users/#{@user.slug}"
     else
       redirect "/signup"
     end
@@ -55,8 +49,13 @@ class UsersController < ApplicationController
   end
 
   get '/users/:slug' do
-    @user = User.find_by_slug(params[:slug])
-    erb :"/users/#{@user.slug}"
+    if logged_in?
+    @products = Product.all
+    @user = current_user
+    erb :"/users/show"
+    else
+    redirect '/login'
+    end
   end
 
 end
