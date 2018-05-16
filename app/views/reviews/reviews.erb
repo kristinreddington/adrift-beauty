@@ -272,9 +272,11 @@ footer img:focus , footer a:focus { outline: none; }
 <% @reviews.each do |review| %>
 <form>
   <div id="contact">
-  <h2> <%= review.title  %> </h2><br>
+  <h2> <%= review.name  %> </h2><br>
 
     <p> <%=review.content %> </p>
+   <% user = User.find(review.user_id) %>
+    <p>Posted By: <%= user.name %> </p>
   </div>
 </form>
 <% end %>
