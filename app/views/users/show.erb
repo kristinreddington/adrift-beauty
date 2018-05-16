@@ -246,12 +246,12 @@ input.radio:focus ~ label:before { box-shadow: 0 0 0 3px #999; }
     width:inherit;
 }
 .navbar-blue li > a,.navbar-toggle  {
-   color:#efefef;
+   color:#ffffff;
 }
-.navbar-blue .dropdown-menu li a {color:#2A4888;}
+.navbar-blue .dropdown-menu li a {color:#333;}
 .navbar-blue .dropdown-menu li > a {padding-left:30px;}
 .navbar-blue li>a:hover, .navbar-blue li>a:focus, .navbar-blue .open, .navbar-blue .open>a, .navbar-blue .open>a:hover, .navbar-blue .open>a:focus {
-   background-color:#2A4888;
+   background-color:#d7e8e1;
    color:#fff;
 }
 #logged_in {
@@ -334,9 +334,6 @@ h1,h2,h3 {
 .btn-default {
     color:#666666;
     text-shadow:0 0 1px rgba(0,0,0,.3);
-}
-
-.form-control {
 }
 
 .panel textarea, .well textarea, textarea.form-control
@@ -461,12 +458,13 @@ small.text-muted {
                   	</div>
                   	<nav class="collapse navbar-collapse" role="navigation">
 
-                    <ul class="nav navbar-nav">
+                      <ul class="nav navbar-nav">
 
-                      <li>
+                          <li>
+                            <a href="/reviews/reviews" role="button">All Reviews</a>
 
-                      </li>
-                    </ul>
+                          </li>
+                        </ul>
 
                     <ul class="nav navbar-nav navbar-right">
 
@@ -474,6 +472,7 @@ small.text-muted {
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %>  <i class="glyphicon glyphicon-user"></i></a>
                         <ul class="dropdown-menu">
                             <li><a href="/products">My Collection</a></li>
+                            <li><a href="/reviews/users/<%= @user.slug %>">My Reviews</a></li>
                             <li><a href="/logout">Logout</a></li>
                         </ul>
                       </li>
@@ -504,7 +503,7 @@ small.text-muted {
                               <div class="panel panel-default">
 
                                 <div class="panel-heading">
-                                  <a href="#postModal" id ="add-button" role="button" data-toggle="modal"><span class="badge">Add Product</span></a>
+                                  <a href="#postModal" id = "add-button" role="button" data-toggle="modal"><span class="badge">Add Product</span></a>
                                    <h4>Your Product Collection</h4>
                                  </div>
 
@@ -512,17 +511,18 @@ small.text-muted {
                                     <div class="list-group">
 
                                       <% current_user.products.each do |product| %>
-                                        <a href= '/products/<%= product.id %>' role="button" class="list-group-item"><img width=50 src= "<%=product.image_url%>"> <%=product.brand%> - <%=product.name%> <a href="#postModal" id ="review-button" role="button" data-toggle="modal"><span class="badge">Write a Review</span></a> </a>
+                                        <a href= '/products/<%= product.id %>' role="button" class="list-group-item"><img width=50 src= "<%=product.image_url%>"> <%=product.brand%> - <%=product.name%>
+                                          <a href="#postModal1" id ="<%= product.id %>" role="button" data-toggle="modal"><span class="badge">Write a Review</span></a> </a>
 
                                       <% end %>
                                     </div>
                                   </div>
                               </div>
+                            </div>
 
 
 
 
-                          </div>
 
                           <!-- main col right -->
                           <div class="col-sm-7">
@@ -558,10 +558,35 @@ small.text-muted {
 
             </div>
             <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
+
           </form>
       </div>
       </div>
   </div>
+  </div>
+
+  <div id="postModal1" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  			Write a Review
+        </div>
+        <div class="modal-body">
+            <form action="/reviews/new" method="POST" class="form center-block">
+              <div class="form-group">
+                <textarea class="form-control input-lg" name = "name" autofocus="" placeholder="Title"></textarea>
+                <textarea name="content" cols="50" rows="5">
+                        Write your review...
+                  </textarea>
+                  <br />
+                </div>
+              <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
+
+            </form>
+        </div>
+      </div>
+    </div>
   </div>
 
 
