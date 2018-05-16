@@ -25,7 +25,7 @@ Welcome <%= current_user.username %>
 html, body {
    height: 100%;
    font-family:verdana,arial,sans-serif;
-   color:#555555;
+   background: rgba(242, 196, 194);
 }
 #site-logo {
   padding-top: 1px;
@@ -182,7 +182,7 @@ input.radio:focus ~ label:before { box-shadow: 0 0 0 3px #999; }
 }
 @media (max-width: 700px) {
     #rig li {
-        width:33.33%;
+        width: fit-content;
     }
 }
 @media (max-width: 550px) {
@@ -204,17 +204,22 @@ input.radio:focus ~ label:before { box-shadow: 0 0 0 3px #999; }
 .column:after {
     clear: both;
 }
+
 .column {
     height: 100%;
     overflow: auto;
     *zoom:1;
 }
+
 .column .padding {
     padding: 20px;
+    background: rgba(242, 196, 194);
 }
+
 .full{
 	padding-top:70px;
 }
+
 .box {
   	bottom: 0; /* increase for footer use */
     left: 0;
@@ -233,7 +238,7 @@ input.radio:focus ~ label:before { box-shadow: 0 0 0 3px #999; }
 }
 .navbar-blue {
     border-width:0;
-	  background-color:#000000;
+	  background-color:#d7e8e1;
     color:#ffffff;
     font-family:arial,sans-serif;
     top:0;
@@ -307,7 +312,7 @@ input.radio:focus ~ label:before { box-shadow: 0 0 0 3px #999; }
 #footer {
   margin-bottom:20px;
   position: center;
-  align: center; 
+  align: center;
 }
 /* bootstrap overrides */
 h1,h2,h3 {
@@ -320,9 +325,10 @@ h1,h2,h3 {
 	background-color: #fff;
 }
 
-.btn-primary,.label-primary,.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus  {
-	background-color:#3B5999;
+.btn-primary, .btn-primary:focus, .btn-primary:hover, .label-primary,.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus  {
+	background-color:rgba(225, 211, 119);
     color:#fffffe;
+    border: rgba(225, 211, 119);
 }
 
 .btn-default {
@@ -337,12 +343,13 @@ h1,h2,h3 {
 {
    resize: none;
 }
-.badge{
-   color:#3B5999;
-   background-color:#fff;
+.badge {
+   color: rgba(225, 211, 119)
+   background-color: #fff;
+   font-weight: 200px;
 }
 .badge:hover, .badge-inverse{
-   background-color:#3B5999;
+   background-color:rgba(225, 211, 119)
    color:#fff;
 }
 .jumbotron {
@@ -360,7 +367,7 @@ h1,h2,h3 {
   letter-spacing:2px;
 }
 .panel-default .panel-heading {
-  background-color:#f9fafb;
+  background-color: #d7e8e1;
   color:#555555;
 }
 .col-sm-9.full {
@@ -457,7 +464,7 @@ small.text-muted {
                     <ul class="nav navbar-nav">
 
                       <li>
-                        <a href="#postModal" role="button" data-toggle="modal"><span class="badge">Add Product</span></a>
+
                       </li>
                     </ul>
 
@@ -480,14 +487,13 @@ small.text-muted {
 
                         <!-- content -->
                       	<div class="row">
-                          <page-header class="header"><img src="/img/Adrift.png" id="site-logo" width=200px;></img></page-header>
 
                          <!-- main col left -->
 
                          <div class="col-sm-5">
 
                               <div class="panel panel-default">
-                                <div class="panel-thumbnail"><img src="/assets/example/bg_5.jpg" class="img-responsive"></div>
+
                                 <div class="panel-body">
                                   <p class="lead"> Welcome, <%= current_user.name %></p>
                                   <p> <%= current_user.products.size %> product(s)</p>
@@ -498,14 +504,16 @@ small.text-muted {
                               <div class="panel panel-default">
 
                                 <div class="panel-heading">
-                                  <a href="#postModal" id ="add-button" role="button" data-toggle="modal"><span class="badge">Add Pair</span></a>
+                                  <a href="#postModal" id ="add-button" role="button" data-toggle="modal"><span class="badge">Add Product</span></a>
                                    <h4>Your Product Collection</h4>
                                  </div>
+
                                   <div class="panel-body">
                                     <div class="list-group">
 
                                       <% current_user.products.each do |product| %>
-                                        <a href= '/products/<%= product.id %>' role="button" class="list-group-item"><img width=50 src= "<%=product.image_url%>"> <%=product.brand%> - <%=product.name%></a>
+                                        <a href= '/products/<%= product.id %>' role="button" class="list-group-item"><img width=50 src= "<%=product.image_url%>"> <%=product.brand%> - <%=product.name%> <a href="#postModal" id ="review-button" role="button" data-toggle="modal"><span class="badge">Write a Review</span></a> </a>
+
                                       <% end %>
                                     </div>
                                   </div>
@@ -522,7 +530,7 @@ small.text-muted {
                             <div class="panel panel-default">
                               <div class="panel-heading"><h4>Adrift Beauty</h4></div>
                               <div class="panel-body">
-                              A place of curation, browsing, imagining and connecting for skincare junkies.<br><br>
+                              A place of curating, browsing, imagining and connecting for skincare junkies.<br><br>
                             </div>
                             </div>
 
