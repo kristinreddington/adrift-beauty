@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
     erb :'/products/products'
   end
 
-  get '/product/new' do
+  get '/products/new' do
     if logged_in?
        erb :'/products/new'
      else
@@ -17,11 +17,41 @@ class ProductsController < ApplicationController
      if logged_in? && !params[:name].empty? && !params[:brand].empty?
       @new_product = Product.create(:name => params[:name], :brand => params[:brand])
       scrape_product_image(@new_product)
-      redirect '/users/:slug' 
+      @new_product.user_id = current_user.id
+      redirect '/users/:slug'
     else
       redirect '/users/:slug'
     end
   end
+
+  get '/products/:id' do
+    @product = Product.find(params[:id])
+    erb :'/products/individual_product'
+  end
+
+  get '/shoes/:id/edit' do
+    @product = Product.find(params[:id])
+    erb :'/products/edit'
+  end
+
+  patch '/products/:id' do
+    @product = Product.find(params[:id])
+    if !params[:brand].empty? && !params[:name].empty? &&
+      @product.update(:brand => params[:brand], :name => params[:name])
+    end
+      scrape_product_image(@new_product)
+      @product.user_id = current_user.id
+      @product.save
+      redirect to "/products/#{@product.id}"
+  end
+
+  get '/products/:id/delete' do
+    @product = Product.find(params[:id])
+    @product.delete
+    redirect to "/shoes"
+  end
+
+
 
   helpers do
     def scrape_product_image(product)
