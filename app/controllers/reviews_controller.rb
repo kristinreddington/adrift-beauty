@@ -2,12 +2,9 @@ class ReviewsController < ApplicationController
 
 
   get '/reviews' do
-    if logged_in?
-      @user = current_user
+      @reviews = Review.all
+      erb :'/reviews/reviews'
     end
-    @reviews = Review.all
-    erb :'/reviews/reviews'
-  end
 
 
   get '/reviews/new' do
@@ -15,14 +12,23 @@ class ReviewsController < ApplicationController
       @user = current_user
       erb :'/reviews/new'
     else
-      redirect '/reviews'
+      redirect '/reviews/reviews'
     end
   end
 
   post '/reviews/new' do
-    
-
-  end
+    if logged_in? && !params[:name].empty? && !params[:content].empty?
+     @user = current_user
+     @new_review = Review.create(:name => params[:name], :content => params[:content])
+     @new_review.save
+     #@product = Product.find()
+     #@new_review.product_id =
+     @new_review.user_id = current_user.id
+     redirect "/users/#{@user.slug}"
+   else
+     redirect '/reviews'
+   end
+ end
 
 
 end
