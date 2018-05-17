@@ -277,15 +277,7 @@ input.radio:focus ~ label:before { box-shadow: 0 0 0 3px #999; }
   margin-top: 10px;
   width: 100%;
 }
-#sidebar, #sidebar a, #sidebar-footer a {
-    color:#ffffff;
-    background-color:transparent;
-	text-shadow:0 0 2px #000000;
-    padding-left:5px;
-}
-#sidebar .nav li>a:hover {
-    background-color:#393939;
-}
+
 .logo {
   display:block;
   padding:3px;
@@ -303,17 +295,8 @@ input.radio:focus ~ label:before { box-shadow: 0 0 0 3px #999; }
   text-shadow:0 0 1px;
   border-radius:2px;
 }
-#sidebar-footer {
-  background-color:#444;
-  position:absolute;
-  bottom:5px;
-  padding:5px;
-}
-#footer {
-  margin-bottom:20px;
-  position: center;
-  align: center;
-}
+
+
 /* bootstrap overrides */
 h1,h2,h3 {
    font-weight:800;
@@ -461,7 +444,7 @@ small.text-muted {
                       <ul class="nav navbar-nav">
 
                           <li>
-                            <a href="/reviews/reviews" role="button">All Reviews</a>
+                            <a href="/products" role="button">All Products</a>
 
                           </li>
                         </ul>
@@ -471,14 +454,15 @@ small.text-muted {
                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %>  <i class="glyphicon glyphicon-user"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/products">My Collection</a></li>
-                            <li><a href="/reviews/users/<%= @user.slug %>">My Reviews</a></li>
+                            <li><a href="/products/collection">My Collection</a></li>
+
                             <li><a href="/logout">Logout</a></li>
                         </ul>
                       </li>
                     </ul>
                   </nav>
                 </div>
+
                 <!-- /top nav -->
 
                 <div class="padding">
@@ -511,8 +495,9 @@ small.text-muted {
                                     <div class="list-group">
 
                                       <% current_user.products.each do |product| %>
-                                        <a href= '/products/<%= product.id %>' role="button" class="list-group-item"><img width=50 src= "<%=product.image_url%>"> <%=product.brand%> - <%=product.name%>
-                                          <a href="#postModal1" id ="<%= product.id %>" role="button" data-toggle="modal"><span class="badge">Write a Review</span></a> </a>
+                                        <a href= '/products/<%= product.id %>' role="button" class="list-group-item"><img width=50 src= "<%=product.image_url%>"> <%=product.brand%> - <%=product.name%></a>
+
+
 
                                       <% end %>
                                     </div>
@@ -555,62 +540,17 @@ small.text-muted {
 
               <textarea class="form-control input-lg" name = "brand" autofocus="" placeholder="Product Brand"></textarea>
               <textarea class="form-control input-lg" name = "name" autofocus="" placeholder="Product Name"></textarea>
-
+              <textarea name="content" cols="50" rows="5">Write a note or review</textarea>
             </div>
             <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
 
           </form>
       </div>
-      </div>
-  </div>
-  </div>
-
-  <div id="postModal1" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-  			Write a Review
-        </div>
-        <div class="modal-body">
-            <form action="/reviews/new" method="POST" class="form center-block">
-              <div class="form-group">
-                <textarea class="form-control input-lg" name = "name" autofocus="" placeholder="Title"></textarea>
-                <textarea name="content" cols="50" rows="5">
-                        Write your review...
-                  </textarea>
-                  <br />
-                </div>
-              <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
-
-            </form>
-        </div>
-      </div>
     </div>
   </div>
+</div>
 
 
-  <div id="postModal2" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-  			Add Product To Wishlist
-        </div>
-        <div class="modal-body">
-            <form action="/products/new" method=POST class="form center-block">
-              <div class="form-group">
-
-                <textarea class="form-control input-lg" name = "brand" autofocus="" placeholder="Product Brand"></textarea>
-                <textarea class="form-control input-lg" name = "style_name" autofocus="" placeholder="Product Name"></textarea>
-
-              </div>
-              <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
-            </form>
-        </div>
-        </div>
-    </div>
-    </div>
 </div>
 
 <footer id="footer"><img src="/img/Adrift.png" id="site-logo" width=200px;></img></footer>
