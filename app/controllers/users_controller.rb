@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
 
   get '/signup' do
-    session.clear
     if logged_in?
-      redirect "/products"
+      redirect "/users/#{@user.slug}"
     else
       erb :"/users/signup"
     end
@@ -14,7 +13,6 @@ class UsersController < ApplicationController
       @user = User.new(:name => params[:name], :username => params[:username], :password => params[:password])
       @user.save
       session[:user_id] = @user.id
-      #binding.pry
       redirect "/users/#{@user.slug}"
     else
       redirect "/signup"
@@ -22,6 +20,7 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
+    #session.clear
     if logged_in?
       redirect "/users/#{@user.slug}"
     else
@@ -35,7 +34,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect "/users/#{@user.slug}"
     else
-      redirect "/signup"
+      redirect "/login"
     end
   end
 
