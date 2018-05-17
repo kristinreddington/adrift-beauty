@@ -94,8 +94,6 @@ hgroup {
 h1, h3 { font-weight: 300; }
 h1 { color: #636363; }
 h3 { color: #4a89dc; }
-
-
 form {
   display: inline-block;
   width: 100%;
@@ -243,29 +241,53 @@ input:focus ~ .highlight {
     opacity: 0;
   }
 }
-
-
+footer { text-align: center; }
+footer p {
+	color: #888;
+	font-size: 13px;
+	letter-spacing: .4px;
+}
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px #FAFAFA inset !important;
 }
-
-
-
+footer a {
+	color: #4a89dc;
+	text-decoration: none;
+	transition: all .2s ease;
+}
+footer a:hover {
+	color: #666;
+	text-decoration: underline;
+}
+footer img {
+	width: 300px;
+	transition: all .2s ease;
+}
+footer img:hover { opacity: .83; }
+footer img:focus , footer a:focus { outline: none; }
 </style>
 </head>
+
+
 <body>
 
 
-<% @products.each do |product| %>
 <form>
   <div id="contact">
+    <h1><%="#{@user.name}'s Product Collection:" %></h1>
+            <% @products.each do |product| %>
+  <h2> <%= product.brand %> - <%= product.name %></h2><br>
+    <img src="<%= product.image_url %>"></img><br>
 
-      <h1>Posted by:<%= product.user %> </h1>
-  <h2> <%= product.brand  %> - <%= product.name %></h2><br>
-    <img src= "<%= product.image_url %>"> </img>
-    <p> <%= product.note %> </p>
+    <p style="font-weight: bold;"> Note(s):</p><br> <p><%= product.note %></p><br>
+
+    <a href="/products/<%= product.id %>/delete">Delete</a>
+    &nbsp; | &nbsp;
+    <a href="/products/<%= product.id %>/edit">Edit Note</a>
+            <% end %>
+
   </div>
 </form>
-<% end %>
+
 
 </body>
