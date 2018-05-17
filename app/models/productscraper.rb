@@ -9,7 +9,7 @@ class ProductScraper < ActiveRecord::Base
 
   def self.scrape_product(url)
     doc = Nokogiri::HTML(open(url))
-    @url = doc.search('#search').search("img").attr("src").text
+    @url = doc.search('#search').search('img').attr("src").text
   end
 
   def self.url
