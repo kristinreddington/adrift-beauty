@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
 
   get '/products' do
     @products = Product.all
+    #binding.pry
     erb :'/products/products'
   end
 
@@ -15,24 +16,52 @@ class ProductsController < ApplicationController
 
    post '/products/new' do
      if logged_in? && !params[:name].empty? && !params[:brand].empty?
-      @new_product = Product.create(:name => params[:name], :brand => params[:brand])
+      @user = current_user
+      @new_product = Product.create(:name => params[:name].strip, :brand => params[:brand].strip, :note => params[:content])
       scrape_product_image(@new_product)
+      @new_product.user = current_user
       @new_product.user_id = current_user.id
-      "/users/#{@user.slug}"
+      @user.products << @new_product
+      @new_product.save
+
+      redirect "/users/#{@user.slug}"
     else
-      redirect '/products/products'
+      redirect '/login'
     end
   end
 
+  get "/products/collection" do
+    @user = current_user
+    @products = @user.products
+    erb :'/products/collection'
+  end
+
   get '/products/:id' do
-    @product = Product.find(params[:id])
+    @product = Product.find_by_id(params[:id])
+
     erb :'/products/individual_product'
   end
 
+  get '/products/:id/edit' do
+    @product = Product.find_by_id(params[:id])
+    erb :'/products/edit'
+  end
+
+  patch '/products/:id' do
+    @updated_product = Product.find_by_id(params[:id])
+    if  !params[:content].empty?
+      @updated_product.update(:note => params[:content])
+    end
+      @updated_product.save
+      redirect to "/products/collection"
+    end
+
+
   get '/products/:id/delete' do
-    @product = Product.find(params[:id])
+    @user = current_user
+    @product = Product.find_by_id(params[:id])
     @product.delete
-    redirect to "/shoes"
+    redirect to "/users/#{@user.slug}"
   end
 
 
@@ -44,7 +73,6 @@ class ProductsController < ApplicationController
       ProductScraper.scrape_product(dynamic_url)
       @new_image_url = ProductScraper.url
       product.image_url = @new_image_url
-      product.user_id = current_user.id
       product.save
     end
   end
