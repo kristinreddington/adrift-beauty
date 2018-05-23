@@ -79,6 +79,7 @@ input:focus ~ label, input.used ~ label {
 .bar:after { right: 50%; }
 /* active */
 input:focus ~ .bar:before, input:focus ~ .bar:after { width: 50%; }
+
 /* Highlight */
 .highlight {
 	position: absolute;
@@ -118,13 +119,16 @@ input:focus ~ .highlight {
   cursor: pointer;
   transition: all 0.15s ease;
 }
+
 .button:focus { outline: 0; }
+
 /* Button modifiers */
 .buttonBlue {
   background: rgba(225, 211, 119);
   text-shadow: 1px 1px 0 #636363;;
 }
 .buttonBlue:hover { background: rgba(225, 211, 119) }
+
 /* Ripples container */
 .ripples {
   position: absolute;
@@ -135,6 +139,7 @@ input:focus ~ .highlight {
   overflow: hidden;
   background: transparent;
 }
+
 /* Ripples circle */
 .ripplesCircle {
   position: absolute;
@@ -174,12 +179,10 @@ input:-webkit-autofill {
 <form action="/login" method="POST">
   <div class="group">
     <input type="text" placeholder="Name" name="name"><span class="highlight"></span><span class="bar"></span>
-
   </div>
 
   <div class="group">
     <input type="email" placeholder="Email" name="username"><span class="highlight"></span><span class="bar"></span>
-
   </div>
 
   <div class="group">

@@ -11,22 +11,20 @@ Welcome <%= current_user.username %>
         <meta name="description" content="Fixed header with independent scrolling left nav and right content." />
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
 
-        <!--[if lt IE 9]>
-          <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-        <link rel="apple-touch-icon" href="/bootstrap/img/apple-touch-icon.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="/bootstrap/img/apple-touch-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="/bootstrap/img/apple-touch-icon-114x114.png">
 
-        <!-- CSS code from Bootply.com editor -->
 
-        <style type="text/css">
-            /* custom template */
+<!-- CSS code from Bootply.com editor -->
+<style type="text/css">
+
+
+/* custom template */
+
 html, body {
    height: 100%;
    font-family:verdana,arial,sans-serif;
    background: rgba(242, 196, 194);
 }
+
 #site-logo {
   padding-top: 1px;
   padding-left: 1px;
@@ -39,6 +37,7 @@ html, body {
    font-family:Arial,sans-serif;
    font-size:13px;
 }
+
 a.dropdown-toggle {
   padding-right: 10px;
 }
@@ -51,21 +50,7 @@ a:hover {
 hr {
   border-color:#dedede;
 }
-/* HIDE <input> */
-input.radio:empty { margin-left: -9999px; }
-/* CUSTOM LABEL */
-input.radio:empty ~ label {
- position: relative;
- float: left;
- line-height: 2.5em;
- text-indent: 3.25em;
- margin-top: 2em;
- cursor: pointer;
- -webkit-user-select: none;
- -moz-user-select: none;
- -ms-user-select: none;
- user-select: none;
-}
+
 /* Label, not hovered or checked */
 input.radio:empty ~ label:before {
 	position: absolute;
@@ -95,6 +80,7 @@ input.radio:checked ~ label:before {
 input.radio:checked ~ label { color: #777; }
 /* On Focus */
 input.radio:focus ~ label:before { box-shadow: 0 0 0 3px #999; }
+
 #rig {
     max-width:60%;
     margin:0 auto; /*center aligned*/
@@ -171,6 +157,7 @@ input.radio:focus ~ label:before { box-shadow: 0 0 0 3px #999; }
     transform:translateY(-20px);
     transition:all .3s;
 }
+
 #rig li:hover .rig-text {
     transform:translateY(0px);
     opacity:0.9;
@@ -332,20 +319,7 @@ h1,h2,h3 {
    background-color:rgba(225, 211, 119)
    color:#fff;
 }
-.jumbotron {
-  background-color:transparent;
-}
-.label-default {
-  background-color:#dddddd;
-}
-.page-header {
-  margin-top: 55px;
-  padding-top: 9px;
-  border-top:1px solid #eeeeee;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:2px;
-}
+
 .panel-default .panel-heading {
   background-color: #d7e8e1;
   color:#555555;
@@ -353,6 +327,7 @@ h1,h2,h3 {
 .col-sm-9.full {
     width: 100%;
 }
+
 .modal-header, .modal-footer {
 	background-color:#f2f2f2;
     font-weight:800;
@@ -371,9 +346,7 @@ h1,h2,h3 {
    border:0;
    box-shadow:0 0 0;
 }
-small.text-muted {
-  font-family:courier,courier-new,monospace;
-}
+
 /* adjust the contents on smaller devices */
 @media (max-width: 768px) {
   .column .padding {
@@ -384,51 +357,24 @@ small.text-muted {
   }
   .navbar-blue {
 	background-color:#3B5999;
-    top:0;
+  top:0;
     width:100%;
     position:relative;
   }
 }
-/*
- * off canvas sidebar
- * --------------------------------------------------
- */
-@media screen and (max-width: 768px) {
-  .row-offcanvas {
-    position: relative;
-    -webkit-transition: all 0.25s ease-out;
-    -moz-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
-  }
-  .row-offcanvas-left.active {
-    left: 33%;
-  }
-  .row-offcanvas-left.active .sidebar-offcanvas {
-    left: -33%;
-    position: absolute;
-    top: 0;
-    width: 33%;
-    margin-left: 5px;
-  }
-  #sidebar, #sidebar a, #sidebar-footer a {
-    padding-left:3px;
-  }
-}
+
 
 </style>
+</head>
 
-    </head>
+<body>
 
+<div class="wrapper">
+  <div class="box">
+    <div class="row row-offcanvas row-offcanvas-left">
+      <div class="column col-sm-10 col-xs-11" id="main">
 
-    <body >
-
-        <div class="wrapper">
-    <div class="box">
-        <div class="row row-offcanvas row-offcanvas-left">
-
-            <div class="column col-sm-10 col-xs-11" id="main">
-
-                <!-- top nav -->
+        <!-- top nav -->
               	<div class="navbar navbar-blue navbar-static-top">
                     <div class="navbar-header">
                       <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
@@ -471,60 +417,52 @@ small.text-muted {
                         <!-- content -->
                       	<div class="row">
 
-                         <!-- main col left -->
+<!-- main col left -->
 
-                         <div class="col-sm-5">
+<div class="col-sm-5">
+  <div class="panel panel-default">
+    <div class="panel-body">
 
-                              <div class="panel panel-default">
-
-                                <div class="panel-body">
-                                  <p class="lead"> Welcome, <%= current_user.name %></p>
-                                  <p> <%= current_user.products.size %> product(s)</p>
-                                </div>
-                              </div>
-
-
-                              <div class="panel panel-default">
-
-                                <div class="panel-heading">
-                                  <a href="#postModal" id = "add-button" role="button" data-toggle="modal"><span class="badge">Add Product</span></a>
-                                   <h4>Your Product Collection</h4>
-                                 </div>
-
-                                  <div class="panel-body">
-                                    <div class="list-group">
-
-                                      <% current_user.products.each do |product| %>
-                                        <a href= '/products/<%= product.id %>' role="button" class="list-group-item"><img width=50 src= "<%=product.image_url%>"> <%=product.brand%> - <%=product.name%></a>
+      <p class="lead"> Welcome, <%= current_user.name %></p>
+      <p> <%= current_user.products.size %> product(s)</p>
+    </div>
+  </div>
 
 
+     <div class="panel panel-default">
+       <div class="panel-heading">
+          <a href="#postModal" id = "add-button" role="button" data-toggle="modal"><span class="badge">Add Product</span></a>
+            <h4>Your Product Collection</h4>
+     </div>
 
-                                      <% end %>
-                                    </div>
-                                  </div>
-                              </div>
-                            </div>
+     <div class="panel-body">
+        <div class="list-group">
+          <% current_user.products.each do |product| %>
+            <a href= '/products/<%= product.id %>' role="button" class="list-group-item">
+              <img width=50 src= "<%=product.image_url%>"> <%=product.brand%> - <%=product.name%></a>
+                <% end %>
+        </div>
+     </div>
+  </div>
+</div>
 
 
 
 
 
-                          <!-- main col right -->
-                          <div class="col-sm-7">
+<!-- main col right -->
+<div class="col-sm-7">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4>Adrift Beauty</h4></div>
 
-                            <div class="panel panel-default">
-                              <div class="panel-heading"><h4>Adrift Beauty</h4></div>
-                              <div class="panel-body">
-                              A place of curating, browsing, imagining and connecting for skincare junkies.<br><br>
-                            </div>
-                            </div>
+            <div class="panel-body">
+  A place of curating, browsing, imagining and connecting for skincare junkies.<br /> <br />
 
-
-                       </div>
-
-                    </div>
-
-
+            </div>
+    </div>
+  </div>
+</div>
 
 <!--post modal-->
 <div id="postModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
@@ -543,14 +481,11 @@ small.text-muted {
               <textarea name="content" cols="50" rows="5">Write a note or review</textarea>
             </div>
             <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
-
           </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-
+       </div>
+     </div>
+   </div>
+ </div>
 </div>
 
 <footer id="footer"><img src="/img/Adrift.png" id="site-logo" width=200px;></img></footer>
@@ -558,26 +493,18 @@ small.text-muted {
 
 
       </div>
-  </div>
+    </div>
   </div>
 </div>
 
-        <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <!-- JavaScript jQuery code from Bootply.com editor  -->
 
-
-        <script type='text/javascript' src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
-
-
-
-
-
-
-
-        <!-- JavaScript jQuery code from Bootply.com editor  -->
-
-        <script type='text/javascript'>
+  <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type='text/javascript' src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+  <script type='text/javascript'>
         $(document).ready(function() {
-            /* off-canvas sidebar toggle */
+
+  /* off-canvas sidebar toggle */
 $('[data-toggle=offcanvas]').click(function() {
   	$(this).toggleClass('visible-xs text-center');
     $(this).find('i').toggleClass('glyphicon-chevron-right glyphicon-chevron-left');
