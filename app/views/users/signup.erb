@@ -189,6 +189,9 @@ footer img:focus , footer a:focus { outline: none; }
 </hgroup>
 
 <form action="/signup" method="POST">
+  <% if @user && @user.errors %>
+  <%= @user.errors.full_messages.each {|message| message} %>
+  <%end%>
   <div class="group">
     <input type="text" placeholder="Name" name="name"><span class="highlight"></span><span class="bar"></span>
 

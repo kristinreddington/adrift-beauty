@@ -1,4 +1,4 @@
-Welcome <%= current_user.username %>
+<%= @user.username %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -423,23 +423,24 @@ h1,h2,h3 {
   <div class="panel panel-default">
     <div class="panel-body">
 
-      <p class="lead"> Welcome, <%= current_user.name %></p>
-      <p> <%= current_user.products.size %> product(s)</p>
+      <p class="lead"> <%= @user.name %></p>
+      <p> <%= @user.products.size %> product(s)</p>
     </div>
   </div>
 
 
      <div class="panel panel-default">
        <div class="panel-heading">
-          <a href="#postModal" id = "add-button" role="button" data-toggle="modal"><span class="badge">Add Product</span></a>
-            <h4>Your Product Collection</h4>
+            <h4><%= @user.name%> Product Collection</h4>
      </div>
 
      <div class="panel-body">
         <div class="list-group">
-          <% current_user.products.each do |product| %>
-            <a href= '/products/<%= product.id %>' role="button" class="list-group-item">
-              <img width=50 src= "<%=product.image_url%>"> <%=product.brand%> - <%=product.name%></a>
+          <% @user.products.each do |product| %>
+            <div class="list-group-item">
+              <img width=50 src= "<%=product.image_url%>">
+          <%=product.brand%> - <%=product.name%> <br> <%=product.note%>
+            </div>
                 <% end %>
         </div>
      </div>
