@@ -38,9 +38,11 @@ form {
   <div id="contact">
     <h2> <%= product.brand  %> - <%= product.name %></h2><br>
     <img src= "<%= product.image_url %>"> </img>
+
     <p> <%= product.note %> </p>
     <h4>Posted by:</h4>
-    <%= product.user.name %>
+    
+    <a href= <%="/users/#{product.user.id}/profile"%>> <%= product.user.name %></a>
   </div>
 </form>
 <%end%>
