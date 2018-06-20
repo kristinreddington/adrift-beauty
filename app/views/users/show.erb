@@ -19,6 +19,7 @@ Welcome <%= current_user.username %>
 
 /* custom template */
 
+
 html, body {
    height: 100%;
    font-family:verdana,arial,sans-serif;
@@ -42,7 +43,7 @@ a.dropdown-toggle {
   padding-right: 10px;
 }
 a {
-  color:#222222;
+  color:#50748a;
 }
 a:hover {
   text-decoration:none;
@@ -151,7 +152,7 @@ input.radio:focus ~ label:before { box-shadow: 0 0 0 3px #999; }
     font-family: 'Oswald', sans-serif;
     font-weight:normal!important;
     top:25%;
-    color:white;
+    color: white;
     opacity:0;
     filter:alpha(opacity=0);/*For older IE*/
     transform:translateY(-20px);
@@ -233,7 +234,7 @@ input.radio:focus ~ label:before { box-shadow: 0 0 0 3px #999; }
     width:inherit;
 }
 .navbar-blue li > a,.navbar-toggle  {
-   color:#ffffff;
+   color:##50748a;
 }
 .navbar-blue .dropdown-menu li a {color:#333;}
 .navbar-blue .dropdown-menu li > a {padding-left:30px;}
@@ -311,13 +312,23 @@ h1,h2,h3 {
    resize: none;
 }
 .badge {
-   color: rgba(225, 211, 119)
-   background-color: #fff;
-   font-weight: 200px;
+
+   display: inline-block;
+   margin-bottom: 5px;
+   padding: 7px 30px;
+   text-transform: uppercase;
+   border-radius: 3px;
+   background: #50748a;
+    color: #ffffff;
+
 }
 .badge:hover, .badge-inverse{
    background-color:rgba(225, 211, 119)
    color:#fff;
+}
+.panel-default>.panel-heading .badge {
+    color: #ffffff;
+    background-color: #50748a;
 }
 
 .panel-default .panel-heading {
@@ -390,7 +401,7 @@ h1,h2,h3 {
                       <ul class="nav navbar-nav">
 
                           <li>
-                            <a href="/products" role="button">All Products</a>
+                            <a href="/products" role="button">All Product Reviews</a>
 
                           </li>
                         </ul>
@@ -398,7 +409,7 @@ h1,h2,h3 {
                     <ul class="nav navbar-nav navbar-right">
 
                       <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %>  <i class="glyphicon glyphicon-user"></i></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %></a>
                         <ul class="dropdown-menu">
                             <li><a href="/products/collection">My Collection</a></li>
 
@@ -432,7 +443,8 @@ h1,h2,h3 {
      <div class="panel panel-default">
        <div class="panel-heading">
           <a href="#postModal" id = "add-button" role="button" data-toggle="modal"><span class="badge">Add Product</span></a>
-            <h4>Your Product Collection</h4>
+            <h4 style="font-size: 17px; letter-spacing: 2px;">Your Product Collection <img src="https://cdn.shopify.com/s/files/1/2060/3653/t/8/assets/MENU-Icon_11.png" style="max-height:27px;"></h4>
+
      </div>
 
      <div class="panel-body">
