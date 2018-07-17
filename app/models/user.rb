@@ -2,7 +2,9 @@ require 'sinatra/base'
 class User < ActiveRecord::Base
   has_secure_password
   has_many :products
-  
+  validates :name, :uniqueness => true 
+  validates :username, :uniqueness => true
+
 
 
   def slug
