@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   get '/products' do
-    @products = Product.all
+    @products = Product.all.select {|p| p.user_id != current_user.id}
     #binding.pry
     erb :'/products/products'
   end
@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
      end
    end
 
-   post '/products/new' do
+   post '/products' do
      if logged_in? && !params[:name].empty? && !params[:brand].empty?
       @user = current_user
       @new_product = Product.create(:name => params[:name].strip, :brand => params[:brand].strip, :note => params[:content])
@@ -23,7 +23,6 @@ class ProductsController < ApplicationController
       @new_product.user_id = current_user.id
       @user.products << @new_product
       @new_product.save
-
       redirect "/users/#{@user.slug}"
     else
       redirect '/login'
@@ -44,8 +43,12 @@ class ProductsController < ApplicationController
 
   get '/products/:id/edit' do
     @product = Product.find_by_id(params[:id])
+    if @product.user_id == current_user.id
     erb :'/products/edit'
+  else
+    redirect "/users/#{current_user.id}"
   end
+end
 
   patch '/products/:id' do
     @updated_product = Product.find_by_id(params[:id])
@@ -61,7 +64,7 @@ class ProductsController < ApplicationController
     @user = current_user
     @product = Product.find_by_id(params[:id])
     @product.delete
-    redirect to "/users/#{@user.slug}"
+    redirect to "/users/#{@user.id}"
   end
 
 
