@@ -9,11 +9,6 @@ gem 'thin'
 gem 'bcrypt'
 gem 'pg'
 
-
-require 'nokogiri'
-require 'open-uri'
-source "https://rubygems.org"
-
 group :development do
   gem 'sqlite3'
   gem 'shotgun'
